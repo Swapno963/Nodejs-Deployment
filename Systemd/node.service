@@ -1,0 +1,22 @@
+[Unit]
+Description=Start Node.js App
+After=network.target mysql.service
+Requires=mysql.service
+
+[Service]
+Type=simple
+User=nodejs
+Group=nodejs
+WorkingDirectory=/opt/app
+ExecStart=/bin/bash /opt/Scripts/mysql-check.sh
+Restart=on-failure
+RestartSec=10
+EnvironmentFile=/etc/environment
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
+
+
